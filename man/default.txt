@@ -1,0 +1,4 @@
+/*
+После установки монги под виндой
+"C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe" --install --dbpath=X:\NodeJS\projects\azbn-express\mongo\db\ --logpath=X:\NodeJS\projects\azbn-express\mongo\log\default.log
+*/
