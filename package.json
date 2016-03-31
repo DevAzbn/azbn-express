@@ -6,6 +6,8 @@
   "dependencies": {
     "express": "^4.13.4",
     "mongoose": "^4.4.10",
+    "sriracha-admin": "0.0.3",
+    "vhost": "^3.0.2",
     "winston": "^2.2.0"
   },
   "devDependencies": {},

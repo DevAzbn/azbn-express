@@ -61,6 +61,11 @@ azbn.mdl('mongo').once('open', function callback () {
 
 azbn.load('db', new require(cfg.path.app + '/mongoose/schema')(azbn, mongoose));
 
+var admin = require('sriracha-admin');
+azbn.mdl('express').use('/admin', admin());
+
+//var vhost = require('vhost');
+//azbn.mdl('express').use(vhost('localhost', azbn.mdl('express')))
 
 //azbn.mdl('express').use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
 //azbn.mdl('express').use(express.logger('dev')); // выводим все запросы со статусами в консоль
@@ -72,15 +77,23 @@ azbn.load('db', new require(cfg.path.app + '/mongoose/schema')(azbn, mongoose));
 
 azbn.mdl('express').use((new require(cfg.path.app + '/logger/default')(azbn)));
 
+azbn.mdl('express').use(express.static(cfg.path.static, {
+	index : 'index.html',
+	redirect : true,
+	/*
+	setHeaders : function(res, path, stat){
+		res.set('x-timestamp' , Date.now());
+	}
+	*/
+}));
 
 //azbn.mdl('express').get('/',				(new require(cfg.path.app + '/route/main/index/get')(azbn)));
-azbn.mdl('express').get('/',				function(req, res){
+/*azbn.mdl('express').get('/',				function(req, res){
 	res.sendFile(__dirname + '/' + azbn.mdl('cfg').path.static + '/index.html');
-});
-
-azbn.mdl('express').post('/',				(new require(cfg.path.app + '/route/main/index/post')(azbn)));
-azbn.mdl('express').put('/',				(new require(cfg.path.app + '/route/main/index/put')(azbn)));
-azbn.mdl('express').delete('/',				(new require(cfg.path.app + '/route/main/index/delete')(azbn)));
+});*/
+//azbn.mdl('express').post('/',				(new require(cfg.path.app + '/route/main/index/post')(azbn)));
+//azbn.mdl('express').put('/',				(new require(cfg.path.app + '/route/main/index/put')(azbn)));
+//azbn.mdl('express').delete('/',				(new require(cfg.path.app + '/route/main/index/delete')(azbn)));
 
 azbn.mdl('express').get('/api/call/',				(new require(cfg.path.app + '/route/api/get')(azbn)));
 azbn.mdl('express').post('/api/call/',				(new require(cfg.path.app + '/route/api/post')(azbn)));
@@ -96,8 +109,6 @@ azbn.mdl('express').delete('/entity/item/:id',				(new require(cfg.path.app + '/
 
 
 
-azbn.mdl('express').use(express.static(cfg.path.static));
-
 azbn.mdl('express').use(function(req, res, next){
 	res.status(404);
 	azbn.mdl('winston').debug('Not found URL: %s', req.url);
@@ -106,9 +117,9 @@ azbn.mdl('express').use(function(req, res, next){
 });
 
 azbn.mdl('express').use(function(err, req, res, next){
-	res.status(err.status || 500);
 	azbn.mdl('winston').error('Internal error(%d): %s', res.statusCode, err.message);
-	res.send({ error: err.message });
+	azbn.mdl('winston').error(err.stack);
+	res.status(err.status || 500).send({ error: err.message });
 	return;
 });
 
