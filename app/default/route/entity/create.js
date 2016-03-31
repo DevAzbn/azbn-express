@@ -18,7 +18,7 @@ function _(azbn) {
 		
 		entity.save(function (err) {
 			if (!err) {
-				azbn.mdl('winston').info('article ' + id + ' created');
+				azbn.mdl('winston').info('entity ' + id + ' created');
 				return res.send({ status: 'OK', entity : entity });
 			} else {
 				console.log(err);

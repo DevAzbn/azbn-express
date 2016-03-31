@@ -70,6 +70,9 @@ azbn.load('db', new require(cfg.path.app + '/mongoose/schema')(azbn, mongoose));
 //azbn.mdl('express').use(express.static(azbn.mdl('path').join(__dirname, cfg.path.static))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 
 
+azbn.mdl('express').use((new require(cfg.path.app + '/logger/default')(azbn)));
+
+
 //azbn.mdl('express').get('/',				(new require(cfg.path.app + '/route/main/index/get')(azbn)));
 azbn.mdl('express').get('/',				function(req, res){
 	res.sendFile(__dirname + '/' + azbn.mdl('cfg').path.static + '/index.html');
