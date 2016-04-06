@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.13.4",
+    "mongodb": "^2.1.14",
     "mongoose": "^4.4.10",
     "sriracha-admin": "0.0.3",
     "vhost": "^3.0.2",
