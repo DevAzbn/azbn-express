@@ -44,9 +44,12 @@ cfg.express.port = azbn.getArgv('port') || cfg.express.port;
 var express = require('express');
 azbn.load('express', express());
 
+
+// модуль логирования
 azbn.load('winston', require('./lib/getWinston')(module));
 
 
+// мангуст для монги
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://' + cfg.mongo.host + ':' + cfg.mongo.port + '/' + cfg.mongo.db);
 
@@ -61,22 +64,26 @@ azbn.mdl('mongo').once('open', function callback () {
 
 azbn.load('db', new require(cfg.path.app + '/mongoose/schema')(azbn, mongoose));
 
-var admin = require('sriracha-admin');
-azbn.mdl('express').use('/admin', admin());
 
+
+// простая админ панель
+//var admin = require('sriracha-admin');
+//azbn.mdl('express').use('/admin', admin());
+
+
+
+// поддержка vhost
 //var vhost = require('vhost');
 //azbn.mdl('express').use(vhost('localhost', azbn.mdl('express')))
 
-//azbn.mdl('express').use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
-//azbn.mdl('express').use(express.logger('dev')); // выводим все запросы со статусами в консоль
-//azbn.mdl('express').use(express.bodyParser()); // стандартный модуль, для парсинга JSON в запросах
-//azbn.mdl('express').use(express.methodOverride()); // поддержка put и delete
-//azbn.mdl('express').use(azbn.mdl('express').router); // модуль для простого задания обработчиков путей
-//azbn.mdl('express').use(express.static(azbn.mdl('path').join(__dirname, cfg.path.static))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 
 
+// логгер
 azbn.mdl('express').use((new require(cfg.path.app + '/logger/default')(azbn)));
 
+
+
+// сервер статики
 azbn.mdl('express').use(express.static(cfg.path.static, {
 	index : 'index.html',
 	redirect : true,
@@ -86,6 +93,9 @@ azbn.mdl('express').use(express.static(cfg.path.static, {
 	}
 	*/
 }));
+
+
+
 
 //azbn.mdl('express').get('/',				(new require(cfg.path.app + '/route/main/index/get')(azbn)));
 /*azbn.mdl('express').get('/',				function(req, res){
@@ -108,7 +118,7 @@ azbn.mdl('express').put('/entity/item/:id',				(new require(cfg.path.app + '/rou
 azbn.mdl('express').delete('/entity/item/:id',				(new require(cfg.path.app + '/route/entity/delete')(azbn)));
 
 
-
+// ошибки
 azbn.mdl('express').use(function(req, res, next){
 	res.status(404);
 	azbn.mdl('winston').debug('Not found URL: %s', req.url);
@@ -126,6 +136,7 @@ azbn.mdl('express').use(function(err, req, res, next){
 azbn.mdl('express').get('/error', function(req, res, next){
 	next(new Error('Error!'));
 });
+
 
 
 
