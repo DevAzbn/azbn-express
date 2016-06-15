@@ -18,6 +18,9 @@ function _(azbn) {
 			
 			entity.title = req.body.title;
 			
+			//user.data.mix.msg = 'Good bye';
+			//user.markModified('data.mix');
+			
 			return entity.save(function (err) {
 				if (!err) {
 					azbn.mdl('winston').info('entity updated');
