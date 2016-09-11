@@ -7,7 +7,7 @@ var cfg = {
 		static : './app/no-mongo/static',
 	},
 	cert : {
-		key : './cert/key.pem',
+		key : './cert/private.key',
 		cert : './cert/cert.pem',
 	},
 	express : {
@@ -48,6 +48,7 @@ azbn.load('express', express());
 azbn.mdl('https').createServer({
 	key : azbn.mdl('fs').readFileSync(cfg.cert.key),
 	cert : azbn.mdl('fs').readFileSync(cfg.cert.cert),
+	passphrase : '1985',
 }, azbn.mdl('express')).listen(cfg.express.sport);
 
 
