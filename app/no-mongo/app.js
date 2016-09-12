@@ -20,12 +20,14 @@ function _(azbn) {
 	
 	var NeDB = require('nedb');
 	
-	azbn.load('nedb.entity', new NeDB({filename : 'nedb/entity.nedb'}));
+	azbn.load('nedb.entity', new NeDB({filename : azbn.mdl('cfg').path.app + '/nedb/entity.nedb'}));
 	azbn.mdl('nedb.entity').loadDatabase();
 	azbn.mdl('nedb.entity').ensureIndex({fieldName : 'uid'});
 	
 	//azbn.mdl('express').get('/api/call/',				(new require('./route/api/get')(azbn)));
 	//azbn.mdl('express').post('/api/call/',				(new require('./route/api/post')(azbn)));
+	
+	azbn.mdl('express').get('/:uid/',					(new require('./route/entity/item/get')(azbn)));
 	
 	azbn.mdl('express').get('/entity/item/:uid/',					(new require('./route/entity/item/get')(azbn)));
 	azbn.mdl('express').post('/entity/item/create/',				(new require('./route/entity/item/post')(azbn)));
