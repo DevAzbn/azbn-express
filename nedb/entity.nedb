@@ -1,0 +1,3 @@
+{"uid":"test2","title":"rerere","main_info":"fdfsdfds","created_at":1473670182531,"type":"default","_id":"CaPALCPpOHJIZN2f"}
+{"uid":"test1","title":"title","main_info":"info","created_at":1473670008381,"type":"default","_id":"HVLg5ALaRhdsYroc"}
+{"$$indexCreated":{"fieldName":"uid","unique":false,"sparse":false}}

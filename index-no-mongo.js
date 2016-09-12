@@ -66,12 +66,16 @@ azbn.mdl('express').use((new require(cfg.path.app + '/logger/default')(azbn)));
 
 
 // боди-парсер
-azbn.mdl('express').use(require('body-parser').json());
-azbn.mdl('express').use(require('body-parser').urlencoded({ extended: true }));
-
+var bodyParser = require('body-parser');
+azbn.mdl('express').use(bodyParser.json());
+azbn.mdl('express').use(bodyParser.urlencoded({ extended: true }));
 
 // куки-парсер
 azbn.mdl('express').use(require('cookie-parser')());
+
+
+// перепись метода
+azbn.mdl('express').use(require('method-override')('_method'));
 
 
 
