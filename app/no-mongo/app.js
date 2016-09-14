@@ -10,6 +10,9 @@ function _(azbn) {
 	//azbn.mdl('express').get('/api/call/',				(new require(cfg.path.app + '/route/api/get')(azbn)));
 	//azbn.mdl('express').post('/api/call/',				(new require(cfg.path.app + '/route/api/post')(azbn)));
 	
+	azbn.mdl('express').set('views', azbn.mdl('cfg').path.app + '/jade');
+	azbn.mdl('express').set('view engine', 'jade');
+	
 	var NeDB = require('nedb');
 	
 	azbn.load('nedb.entity', new NeDB({filename : azbn.mdl('cfg').path.app + '/nedb/entity.nedb'}));
@@ -29,6 +32,8 @@ function _(azbn) {
 	azbn.mdl('express').get('/entity/list/',						(new require('./route/entity/list/get')(azbn)));
 	
 	azbn.mdl('express').get('/web/get/',						(new require('./route/web/get')(azbn)));
+	
+	azbn.mdl('express').get('/jade/index/',						(new require('./route/jade/index')(azbn)));
 	
 	
 	/*
