@@ -27,6 +27,11 @@ function AzbNodeWebClient(azbn) {
 		},
 	}
 	*/
+	this.req = function(method, url, data, cb){
+		data.method = method;
+		data.url = url;
+		request(data, cb);
+	};
 	
 	this.get = function(url, data, cb){
 		data.url = url;
