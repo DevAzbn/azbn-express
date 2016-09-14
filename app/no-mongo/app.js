@@ -16,8 +16,10 @@ function _(azbn) {
 	azbn.mdl('nedb.entity').loadDatabase();
 	azbn.mdl('nedb.entity').ensureIndex({fieldName : 'uid'});
 	
-	//azbn.mdl('express').get('/api/call/',				(new require('./route/api/get')(azbn)));
-	//azbn.mdl('express').post('/api/call/',				(new require('./route/api/post')(azbn)));
+	azbn.mdl('express').get('/process/exit/',				(new require('./route/process/exit')(azbn)));
+	
+	azbn.mdl('express').get('/api/call/',				(new require('./route/api/get')(azbn)));
+	azbn.mdl('express').post('/api/call/',				(new require('./route/api/post')(azbn)));
 	
 	azbn.mdl('express').get('/:uid/',					(new require('./route/entity/item/get')(azbn)));
 	
@@ -27,6 +29,8 @@ function _(azbn) {
 	azbn.mdl('express').delete('/entity/item/delete/',				(new require('./route/entity/item/delete')(azbn)));
 	
 	azbn.mdl('express').get('/entity/list/',						(new require('./route/entity/list/get')(azbn)));
+	
+	azbn.mdl('express').get('/web/get/',						(new require('./route/web/get')(azbn)));
 	
 	
 	/*

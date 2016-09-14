@@ -4,12 +4,13 @@
 
 function _(azbn) {
 	
-	var log_tag = 'api/get';
+	var log_tag = 'process/exit';
 	azbn.echo('Handler loaded', log_tag);
 	
 	this.handler = function(req, res) {
 		//res.send(log_tag + ' response');
-		res.send(req.headers);
+		process.exit(0);
+		res.send('');
 	}
 	
 	return this.handler;

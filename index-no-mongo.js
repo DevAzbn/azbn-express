@@ -1,5 +1,7 @@
 'use strict';
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 var cfg = {
 	path : {
 		azbnode : './azbnode',
@@ -14,6 +16,9 @@ var cfg = {
 		port : 80,
 		sport : 443,
 	},
+	site : {
+		domain : 'localhost.azbn.ru',
+	},
 };
 
 
@@ -22,6 +27,7 @@ var azbn = require(cfg.path.azbnode + '/azbnode');
 azbn.load('cfg', cfg);
 
 azbn.load('azbnodeevents', new require(cfg.path.azbnode + '/azbnodeevents')(azbn));
+azbn.load('web', new require(cfg.path.azbnode + '/azbnodewebclient')(azbn));
 azbn.event('loaded_azbnode', azbn);
 
 
