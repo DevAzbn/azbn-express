@@ -9,7 +9,7 @@ function _(azbn) {
 	
 	this.handler = function(req, res) {
 		//res.send(log_tag + ' response');
-		process.exit(0);
+		process.exit(1);
 		res.send('');
 	}
 	
