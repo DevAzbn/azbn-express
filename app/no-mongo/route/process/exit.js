@@ -13,9 +13,9 @@ function _(azbn) {
 		//process.exit(parseInt(_p.uid) || 0);
 		
 		var spawn = require('child_process').spawn;
-		var forever_restart = spawn('forever', ['restart', 'index-no-mongo.js']);
+		var forever_restart = spawn('forever', ['restart', azbn.mdl('cfg').process.file]);
 		
-		res.send('');
+		res.send('command "forever restart" sended');
 	}
 	
 	return this.handler;

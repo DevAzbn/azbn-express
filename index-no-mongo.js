@@ -3,6 +3,9 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 var cfg = {
+	process : {
+		file : 'index-no-mongo.js',
+	},
 	path : {
 		azbnode : './azbnode',
 		app : './app/no-mongo',
@@ -13,8 +16,8 @@ var cfg = {
 		cert : './cert/cert.pem',
 	},
 	express : {
-		port : 37080,
-		sport : 37443,
+		port : 17080,
+		sport : 17443,
 	},
 	site : {
 		domain : 'azbn.ru',
