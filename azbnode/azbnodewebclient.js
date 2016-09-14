@@ -27,7 +27,7 @@ function AzbNodeWebClient(azbn) {
 		},
 	}
 	*/
-	this.req = function(method, url, data, cb){
+	this.r = function(method, url, data, cb){
 		data.method = method;
 		data.url = url;
 		request(data, cb);
@@ -53,6 +53,7 @@ function AzbNodeWebClient(azbn) {
 		data.url = url;
 		request.delete(data, cb);
 	};
+	
 	this.parse = function(html) {
 		return cheerio.load(html, {
 			normalizeWhitespace : true,
