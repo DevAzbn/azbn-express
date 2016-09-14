@@ -8,8 +8,10 @@ function _(azbn) {
 	azbn.echo('Handler loaded', log_tag);
 	
 	this.handler = function(req, res) {
-		//res.send(log_tag + ' response');
-		process.exit(0);
+		
+		var _p = req.params;
+		
+		process.exit(parseInt(_p.uid) || 0);
 		res.send('');
 	}
 	

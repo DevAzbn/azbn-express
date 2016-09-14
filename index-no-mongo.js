@@ -128,6 +128,12 @@ azbn.mdl('express').get('/error', function(req, res, next){
 
 
 
-azbn.mdl('express').listen(cfg.express.port, function() {
+azbn.load('http', azbn.mdl('express').listen(cfg.express.port, function() {
 	azbn.mdl('winston').info('Example app listening on port ' + cfg.express.port + '!');
+}));
+
+process.on('exit', function() {
+	azbn.unload('http');
+	azbn.unload('https');
+	azbn.mdl('winston').warn('http- and https-servers is stoped');
 });
