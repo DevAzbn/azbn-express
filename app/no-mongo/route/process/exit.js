@@ -9,9 +9,12 @@ function _(azbn) {
 	
 	this.handler = function(req, res) {
 		
-		var _p = req.params;
+		//var _p = req.params;
+		//process.exit(parseInt(_p.uid) || 0);
 		
-		process.exit(parseInt(_p.uid) || 0);
+		var spawn = require('child_process').spawn;
+		var forever_restart = spawn('forever', ['restart', 'index-no-mongo.js']);
+		
 		res.send('');
 	}
 	

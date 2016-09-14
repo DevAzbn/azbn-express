@@ -13,8 +13,8 @@ var cfg = {
 		cert : './cert/cert.pem',
 	},
 	express : {
-		port : 17080,
-		sport : 17443,
+		port : 37080,
+		sport : 37443,
 	},
 	site : {
 		domain : 'azbn.ru',
