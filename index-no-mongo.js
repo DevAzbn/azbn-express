@@ -51,11 +51,14 @@ azbn.load('express', express());
 
 
 
-azbn.mdl('https').createServer({
-	key : azbn.mdl('fs').readFileSync(cfg.cert.key),
-	cert : azbn.mdl('fs').readFileSync(cfg.cert.cert),
-	passphrase : '1985',
-}, azbn.mdl('express')).listen(cfg.express.sport);
+azbn.mdl('https')
+	.createServer({
+		key : azbn.mdl('fs').readFileSync(cfg.cert.key),
+		cert : azbn.mdl('fs').readFileSync(cfg.cert.cert),
+		passphrase : '1985',
+	}, azbn.mdl('express'))
+	.listen(cfg.express.sport)
+	;
 
 
 
@@ -118,7 +121,8 @@ azbn.mdl('express').use(function(err, req, res, next){
 });
 
 azbn.mdl('express').get('/error', function(req, res, next){
-	next(new Error('Error!'));
+	//next(new Error('Error!'));
+	azbn.mdl('winston').error(new Error('Error!'));
 });
 
 

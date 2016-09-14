@@ -5,7 +5,8 @@
 function _(azbn) {
 	
 	var log_tag = 'app_js';
-	azbn.echo('Handler loaded', log_tag);
+	//azbn.echo('Handler loaded', log_tag);
+	azbn.mdl('winston').info('app.js loaded');
 	
 	//azbn.mdl('express').get('/api/call/',				(new require(cfg.path.app + '/route/api/get')(azbn)));
 	//azbn.mdl('express').post('/api/call/',				(new require(cfg.path.app + '/route/api/post')(azbn)));
