@@ -21,8 +21,6 @@ function _(azbn) {
 	azbn.mdl('express').get('/api/call/',				(new require('./route/api/get')(azbn)));
 	azbn.mdl('express').post('/api/call/',				(new require('./route/api/post')(azbn)));
 	
-	azbn.mdl('express').get('/:uid/',					(new require('./route/entity/item/get')(azbn)));
-	
 	azbn.mdl('express').get('/entity/item/:uid/',					(new require('./route/entity/item/get')(azbn)));
 	azbn.mdl('express').post('/entity/item/create/',				(new require('./route/entity/item/post')(azbn)));
 	azbn.mdl('express').put('/entity/item/update/',					(new require('./route/entity/item/put')(azbn)));
@@ -36,6 +34,8 @@ function _(azbn) {
 	/*
 	подключение других модулей?
 	*/
+	
+	azbn.mdl('express').get('/:uid/',					(new require('./route/entity/item/get')(azbn)));
 	
 	
 }
