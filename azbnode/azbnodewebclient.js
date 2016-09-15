@@ -27,45 +27,51 @@ function AzbNodeWebClient(azbn) {
 		},
 	}
 	*/
-	this.r = function(method, url, data, cb){
+	
+	var ctrl = this;
+	
+	ctrl.r = function(method, url, data, cb){
 		data.method = method;
 		data.url = url;
 		request(data, cb);
 	};
 	
-	this.get = function(url, data, cb){
+	/*
+	ctrl.get = function(url, data, cb){
 		data.url = url;
 		request.get(data, cb);
 	};
-	this.head = function(url, data, cb){
+	ctrl.head = function(url, data, cb){
 		data.url = url;
 		request.head(data, cb);
 	};
-	this.post = function(url, data, cb){
+	ctrl.post = function(url, data, cb){
 		data.url = url;
 		request.post(data, cb);
 	};
-	this.put = function(url, data, cb){
+	ctrl.put = function(url, data, cb){
 		data.url = url;
 		request.put(data, cb);
 	};
-	this.delete = function(url, data, cb){
+	ctrl.delete = function(url, data, cb){
 		data.url = url;
 		request.delete(data, cb);
 	};
+	*/
 	
-	this.parse = function(html) {
+	ctrl.parse = function(html) {
 		return cheerio.load(html, {
 			normalizeWhitespace : true,
 			//xmlMode : true,
 		});
 	};
-	this.selfAPI = function(url, data, cb){
-		data.url = 'https://localhost:' + azbn.mdl('cfg').express.sport + url;
-		request.post(data, cb);
+	ctrl.selfAPI = function(url, data, cb){
+		url = 'https://localhost:' + azbn.mdl('cfg').express.sport + url;
+		//request.post(data, cb);
+		ctrl.r('GET', url, data, cb);
 	};
 	
-	return this;
+	return ctrl;
 }
 
 module.exports = AzbNodeWebClient;
