@@ -25,6 +25,8 @@ function _(azbn) {
 	azbn.mdl('express').get('/git/stash/',				(new require('./route/git/stash')(azbn)));
 	azbn.mdl('express').get('/git/pull/',				(new require('./route/git/pull')(azbn)));
 	
+	azbn.mdl('express').get('/npm/i/',				(new require('./route/npm/i')(azbn)));
+	
 	azbn.mdl('express').get('/api/call/',				(new require('./route/api/get')(azbn)));
 	azbn.mdl('express').post('/api/call/',				(new require('./route/api/post')(azbn)));
 	
