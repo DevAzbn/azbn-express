@@ -20,6 +20,8 @@ function _(azbn) {
 	azbn.mdl('nedb.entity').loadDatabase();
 	azbn.mdl('nedb.entity').ensureIndex({fieldName : 'uid'});
 	
+	azbn.mdl('express').post('/process/spawn/',				(new require('./route/process/spawn')(azbn)));
+	
 	azbn.mdl('express').get('/process/exit/',				(new require('./route/process/exit')(azbn)));
 	
 	azbn.mdl('express').get('/git/stash/',				(new require('./route/git/stash')(azbn)));

@@ -13,10 +13,9 @@ function _(azbn) {
 		
 		entity.created_at = azbn.now();
 		entity.type = 'default';
+		entity.uid = entity.uid ? entity.uid : 'entity_' + entity.created_at;
 		
-		azbn.mdl('nedb.entity').insert(entity, function (err, doc) { // Callback is optional
-			// newDoc is the newly inserted document, including its _id
-			// newDoc has no key called notToBeSaved since its value was undefined
+		azbn.mdl('nedb.entity').insert(entity, function (err, doc) {
 			
 			if(err) {
 				return res.send(err);
