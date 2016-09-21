@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "azbn-tple": "^1.0.0",
     "body-parser": "^1.15.2",
     "cheerio": "^0.22.0",
     "compression": "^1.6.2",

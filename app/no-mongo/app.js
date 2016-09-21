@@ -11,8 +11,27 @@ function _(azbn) {
 	//azbn.mdl('express').get('/api/call/',				(new require(cfg.path.app + '/route/api/get')(azbn)));
 	//azbn.mdl('express').post('/api/call/',				(new require(cfg.path.app + '/route/api/post')(azbn)));
 	
+	
 	azbn.mdl('express').set('views', azbn.mdl('cfg').path.app + '/jade');
 	azbn.mdl('express').set('view engine', 'jade');
+	
+	/*
+	azbn.mdl('express').engine('azbn-tple', function (filePath, options, callback) {
+		console.log(filePath);
+		return callback(null, 'testing...');
+	});
+	azbn.mdl('express').set('views', azbn.mdl('cfg').path.app + '/azbn-tple');
+	azbn.mdl('express').set('view engine', 'azbn-tple');
+	*/
+	
+	azbn.load('azbn-tple',  new require('azbn-tple')({
+		part_path : azbn.mdl('cfg').path.app + '/azbn-tple',
+		cache : {
+			tpls : [
+				'/index.azbn-tple',
+			],
+		},
+	}));
 	
 	var NeDB = require('nedb');
 	
@@ -43,6 +62,7 @@ function _(azbn) {
 	
 	azbn.mdl('express').get('/jade/index/',						(new require('./route/jade/index')(azbn)));
 	
+	azbn.mdl('express').get('/azbn-tple/index/',						(new require('./route/azbn-tple/index')(azbn)));
 	
 	/*
 	подключение других модулей?
