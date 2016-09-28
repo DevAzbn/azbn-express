@@ -63,6 +63,7 @@ function _(azbn) {
 	azbn.mdl('express').get('/jade/index/',						(new require('./route/jade/index')(azbn)));
 	
 	azbn.mdl('express').get('/azbn-tple/index/',						(new require('./route/azbn-tple/index')(azbn)));
+	azbn.mdl('express').get('/azbn-tple/version/',						(new require('./route/azbn-tple/version')(azbn)));
 	
 	/*
 	подключение других модулей?
